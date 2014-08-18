@@ -252,7 +252,7 @@ cstring str_printf(cstring s, const char* fmt, ...)
 	va_list ap;
 	cstring t;
 	char *buf;
-	size_t buflen = 64;
+	size_t buflen = INIT_CSTRING_SIZE;
 	
 	va_start(ap, fmt);
 	while(1){
