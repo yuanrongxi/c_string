@@ -261,7 +261,11 @@ cstring str_printf(cstring s, const char* fmt, ...)
 			return NULL;
 
 		buf[buflen-2] = '\0';
+#ifdef WIN32
 		_vsnprintf(buf, buflen, fmt, ap);
+#else
+		vsnprintf(buf, buflen, fmt, ap);
+#endif
 		if (buf[buflen-2] != '\0') {
 			free(buf);
 			buflen *= 2;
@@ -315,6 +319,7 @@ void cstr_dump(cstring s)
 	string_t* str = STRING_T(s);
 	printf("string = %s, len = %d, free = %d\r\n", str->buf, str->len, str->free);
 }
+
 
 
 
